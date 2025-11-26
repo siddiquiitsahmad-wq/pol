@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Spider-Man Wishes You Happy Birthday!</title>
+<style>
+:root{
+--bg:#0b1020;
+--card:#111526;
+--accent:#e6322b;
+--text:#ffffff;
+--muted:#b8c0d6;
+}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+body{
+background: radial-gradient(1200px 600px at 10% 10%, #11243a 0%, transparent 20%),
+radial-gradient(1000px 500px at 90% 90%, #2b0f19 0%, transparent 20%),
+var(--bg);
+color:var(--text);
+display:flex;align-items:center;justify-content:center;padding:24px;
+}
+.card{
+width:100%;
+max-width:980px;
+background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));
+border-radius:16px;
+box-shadow: 0 10px 30px rgba(2,6,23,0.7);
+overflow:hidden;
+position:relative;
+}
+.hero{
+display:flex;gap:20px;align-items:center;padding:28px;
+background:
+linear-gradient(90deg, rgba(230,50,43,0.06), transparent 40%),
+radial-gradient(circle at 20% 20%, rgba(230,50,43,0.06), transparent 20%);
+}
+.left{
+flex:1;min-width:240px;
+}
+.title{
+font-size: clamp(22px, 3.6vw, 36px);
+margin:0 0 8px 0;
+line-height:1.02;
+letter-spacing: -0.02em;
+}
+.subtitle{
+color:var(--muted);margin:0 0 12px 0;font-size:14px;
+}
+.greeting{
+display:inline-block;
+background: linear-gradient(90deg,#ff6b6b,#ffd86b);
+-webkit-background-clip:text;background-clip:text;color:transparent;
+font-weight:700;font-size:clamp(32px,6.6vw,64px);
+text-shadow: 0 6px 18px rgba(0,0,0,0.5);
+transform-origin:center;
+animation: floatTitle 3s ease-in-out infinite;
+}
+@keyframes floatTitle{
+0%{transform:translateY(0) rotate(-1deg)}
+50%{transform:translateY(-8px) rotate(1deg)}
+100%{transform:translateY(0) rotate(-1deg)}
+}
+.cta-row{margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;}
+button{
+border:0;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;
+box-shadow: 0 6px 18px rgba(0,0,0,0.45)
+}
+.btn-primary{background:var(--accent);color:white}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.06)}
+.right{
+width:260px;height:260px;border-radius:12px;background:linear-gradient(180deg,#00000044,#ffffff05);
+display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+}
+.spidey{
+width:100%;height:100%;object-fit:cover;display:block;
+filter: drop-shadow(0 10px 22px rgba(0,0,0,0.6));
+}
+
+/* gallery */
+.gallery{
+padding: 100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;
+background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+
+}
+.thumb{
+background:linear-gradient(180deg,#00000033,#ffffff02);
+border-radius:10px;overflow:hidden;cursor:pointer;position:relative;height:180px;
+display:flex;align-items:center;justify-content:center;
+}
+.thumb img{width:90%;height:100%;object-fit:cover;display:block;}
+
+.lightbox{
+position:fixed;inset:0;background:rgba(6,8,20,0.8);display:none;align-items:center;justify-content:center;z-index:999;
+}
+.lightbox img{max-width:90%;max-height:90%;border-radius:10px;box-shadow:0 14px 60px rgba(0,0,0,0.7)}
+.close{position:absolute;right:20px;top:20px;color:white;background:#00000055;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+
+footer{padding:12px 20px;color:var(--muted);font-size:13px;text-align:center;}
+
+/* confetti canvas fills the card */
+canvas#confettiCanvas{position:absolute;inset:0;pointer-events:none;z-index:2}
+
+@media (max-width:720px){
+.hero{flex-direction:column;align-items:flex-start}
+.right{width:100%;height:180px}
+}
+</style>
+</head>
+<body>
+<div class="card" id="card">
+<canvas id="confettiCanvas"></canvas>
+
+<div class="hero">
+<div class="left">
+<p class="title">From your friendly neighborhood</p>
+<h1 class="greeting">Spider-Man says — Happy Birthday!ADITYA SINHA</h1>
+<p class="subtitle">Wishing you an amazing day filled with fun, adventure, and lots of LOVE 🎂</p>
+
+<div class="cta-row">
+<button class="btn-primary" id="playBtn">Play Party Sound</button>
+<button class="btn-ghost" id="confettiBtn">Throw Confetti</button>
+<button class="btn-ghost" id="downloadBtn">Download Card (PNG)</button>
+</div>
+</div>
+
+<div class="right">
+<!-- Replace this placeholder with your Spider-Man image or any photo -->
+<img src="IMTOG_5759.JPG" alt="Spider-Man" class="spidey" id="heroImg">
+</div>
+</div>
+
+<div class="gallery" id="gallery">
+<!-- Thumbnails: replace src attributes with your own image paths -->
+<div class="thumb"><img src="IMG_2784.jpg " alt="photo1"></div>
+<div class="thumb"><img src="IMG_5761.JPG" alt="photo2"></div>
+<div class="thumb"><img src="IMG_5760.JPG" alt="photo3"></div>
+<div class="thumb"><img src="IMG_5752.jpg" alt="photo4"></div>
+</div>
+
+<footer>Tip: Replace the placeholder images with your own images. Drag & drop an image onto the big Spider-Man photo to set it!</footer>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+<div class="close" id="lightboxClose">&times;</div>
+<img id="lightboxImg" src="">
+</div>
+
+<audio id="partySound" src="https://actions.google.com/sounds/v1/alarms/air_horn.ogg" preload="auto"></audio>
+
+<script>
+// Gallery click -> lightbox
+document.querySelectorAll('.thumb img').forEach(img=>{
+img.addEventListener('click', e=>{
+const lb = document.getElementById('lightbox');
+document.getElementById('lightboxImg').src = e.target.src;
+lb.style.display = 'flex';
+});
+});
+document.getElementById('lightboxClose').addEventListener('click', ()=> document.getElementById('lightbox').style.display='none');
+document.getElementById('lightbox').addEventListener('click', (e)=>{ if(e.target.id==='lightbox') e.currentTarget.style.display='none'; });
+
+// Drag & drop onto hero image
+const heroImg = document.getElementById('heroImg');
+const card = document.getElementById('card');
+['dragenter','dragover'].forEach(ev=>card.addEventListener(ev, e=>{ e.preventDefault(); e.dataTransfer.dropEffect='copy'; }));
+card.addEventListener('drop', e=>{
+e.preventDefault();
+const file = e.dataTransfer.files && e.dataTransfer.files[0];
+if(file && file.type.startsWith('image/')){
+const url = URL.createObjectURL(file);
+heroImg.src = url;
+} else alert('Please drop an image file.');
+});
+
+// Play party sound
+document.getElementById('playBtn').addEventListener('click', ()=>{
+const audio = document.getElementById('partySound');
+audio.currentTime = 0; audio.play().catch(()=>{ /* ignore */ });
+});
+
+// Confetti effect (simple)
+const confettiBtn = document.getElementById('confettiBtn');
+const canvas = document.getElementById('confettiCanvas');
+const ctx = canvas.getContext('2d');
+let confettiPieces = [];
+function resizeCanvas(){ canvas.width = card.clientWidth; canvas.height = card.clientHeight; }
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function spawnConfetti(){
+const n = 120;
+confettiPieces = [];
+for(let i=0;i<n;i++){
+confettiPieces.push({
+x: Math.random()*canvas.width,
+y: Math.random()*-canvas.height,
+r: 6+Math.random()*8,
+d: (Math.random()*n)+10,
+color: ['#e6322b','#ffffff','#ffd86b','#5fb6ff'][Math.floor(Math.random()*4)],
+tilt: Math.random()*10,
+tiltAngleIncrement: (Math.random()*0.07)+0.05,
+tiltAngle: 0
+});
+}
+animateConfetti();
+}
+
+let confettiAnimId;
+function animateConfetti(){
+if(confettiAnimId) cancelAnimationFrame(confettiAnimId);
+let t0 = performance.now();
+function frame(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+for(let i=0;i<confettiPieces.length;i++){
+const p = confettiPieces[i];
+p.tiltAngle += p.tiltAngleIncrement;
+p.y += (Math.cos(p.d) + 3 + p.r/2)*0.7;
+p.x += Math.sin(0.01 * p.d);
+p.tilt = Math.sin(p.tiltAngle)*12;
+ctx.beginPath();
+ctx.fillStyle = p.color;
+ctx.fillRect(p.x + p.tilt, p.y, p.r, p.r*0.6);
+}
+confettiPieces = confettiPieces.filter(p => p.y < canvas.height + 50);
+if(confettiPieces.length>0) confettiAnimId = requestAnimationFrame(frame);
+else { ctx.clearRect(0,0,canvas.width,canvas.height); cancelAnimationFrame(confettiAnimId); confettiAnimId = null; }
+}
+frame();
+}
+
+confettiBtn.addEventListener('click', spawnConfetti);
+
+// Download the card as an image (simple approach using html2canvas-like technique)
+document.getElementById('downloadBtn').addEventListener('click', async ()=>{
+// We'll create a raster using built-in DOM2Image technique via SVG foreignObject (works in many browsers)
+const node = card;
+const width = node.offsetWidth;
+const height = node.offsetHeight;
+const data = `
+<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+<foreignObject width="100%" height="100%">
+${new XMLSerializer().serializeToString(node)}
+</foreignObject>
+</svg>`;
+const blob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+const url = URL.createObjectURL(blob);
+const img = new Image();
+img.onload = ()=>{
+const c = document.createElement('canvas');
+c.width = width; c.height = height;
+const cx = c.getContext('2d');
+cx.fillStyle = getComputedStyle(document.body).background || '#0b1020';
+cx.fillRect(0,0,width,height);
+cx.drawImage(img,0,0);
+URL.revokeObjectURL(url);
+c.toBlob(b=>{
+const dl = document.createElement('a');
+dl.href = URL.createObjectURL(b);
+dl.download = 'spiderman_birthday_card.png';
+dl.click();
+URL.revokeObjectURL(dl.href);
+}, 'image/png');
+};
+img.crossOrigin = 'anonymous';
+img.src = url;
+});
+
+// Optional: let users click a thumbnail to set hero image
+document.querySelectorAll('.thumb img').forEach(img=>{
+img.addEventListener('dblclick', e=>{
+heroImg.src = e.target.src;
+});
+});
+
+// Small accessibility: press space/enter on greeting to replay confetti
+document.querySelector('.greeting').addEventListener('click', spawnConfetti);
+document.querySelector('.greeting').setAttribute('role','button');
+document.querySelector('.greeting').tabIndex = 0;
+document.querySelector('.greeting').addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') spawnConfetti(); });
+
+// ---- Helpful note shown in console
+console.log("Tip: Replace the placeholder image URLs with your own Spider-Man photos, or drag & drop images onto the big photo.");
+</script>
+</body>
+</html>
+
+
